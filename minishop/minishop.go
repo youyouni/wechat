@@ -42,9 +42,14 @@ func (ms *MiniShop) GetService() *service.Service {
 	return service.NewService(ms.ctx)
 }
 
-// GetGoods 获取商品
+// GetGoods 获取商品前接口
 func (ms *MiniShop) GetGoods() *goods.Goods {
 	return goods.NewGoods(ms.ctx)
+}
+
+// GetSpu 获取SPU接口
+func (ms *MiniShop) GetSpu() *goods.Spu {
+	return goods.NewSpu(ms.ctx)
 }
 
 // GetCoupon 获取优惠券
