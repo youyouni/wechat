@@ -16,7 +16,7 @@ type Store struct {
 	*context.Context
 }
 
-//NewService new order
+//NewStore new order
 func NewStore(ctx *context.Context) *Store {
 	return &Store{ctx}
 }
