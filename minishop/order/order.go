@@ -56,6 +56,7 @@ func (o *Order) GetList(req *GetListParam) ([]byte, error) {
 	return o.FetchData(orderGetListURL, req)
 }
 
+// GetListRsp 获取订单列表导出
 type GetListRsp struct {
 	Errcode int `json:"errcode"`
 	Orders  []struct {
@@ -120,6 +121,7 @@ type GetListRsp struct {
 	TotalNum int `json:"total_num"`
 }
 
+// ParseOrderList 解析订单列表
 func (o *Order) ParseOrderList(t []byte) (*GetListRsp, error) {
 	rsp := &GetListRsp{}
 	err := json.Unmarshal(t, rsp)
