@@ -38,14 +38,16 @@ func (c *Context) FetchData(urlStr string, body interface{}) (response []byte, e
 	}
 	response, err = util.PostJSON(urlStr, body)
 	if err != nil {
-		return
+		return nil, err
 	}
 	// 返回错误信息
 	var result util.CommonError
 	err = json.Unmarshal(response, &result)
-	if err == nil && result.ErrCode != 0 {
-		err = fmt.Errorf("fetchCode error : errcode=%v , errmsg=%v", result.ErrCode, result.ErrMsg)
+	if err != nil {
 		return nil, err
+	}
+	if result.ErrCode != 0 {
+		return nil, fmt.Errorf("fetchCode error : errcode=%v , errmsg=%v", result.ErrCode, result.ErrMsg)
 	}
 	return response, err
 }
