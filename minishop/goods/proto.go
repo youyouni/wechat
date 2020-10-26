@@ -98,35 +98,32 @@ type SpuRsp struct {
 // SpuListRsp 商品列表
 type SpuListRsp struct {
 	util.CommonError
-	Data struct {
-		Spu struct {
-			Title    string   `json:"title"`
-			SubTitle string   `json:"sub_title"`
-			HeadImg  []string `json:"head_img"`
-			DescInfo struct {
-				Imgs []string `json:"imgs"`
-			} `json:"desc_info"`
-			OutProductID string `json:"out_product_id"`
-			ProductID    int    `json:"product_id"`
-			BrandID      int    `json:"brand_id"`
-			Status       int    `json:"status"`
-			EditStatus   int    `json:"edit_status"`
-			MinPrice     int    `json:"min_price"`
-			Cats         []struct {
-				CatID int `json:"cat_id"`
-				Level int `json:"level"`
-			} `json:"cats"`
-			Attrs []struct {
-				AttrKey   string `json:"attr_key"`
-				AttrValue string `json:"attr_value"`
-			} `json:"attrs"`
-			Model   string `json:"model"`
-			Shopcat []struct {
-				ShopcatID int `json:"shopcat_id"`
-			} `json:"shopcat"`
-			Skus []struct {
-				SkuID int `json:"sku_id"`
-			} `json:"skus"`
-		} `json:"spu"`
-	} `json:"data"`
+	Spus []struct {
+		Title        string   `json:"title"`
+		SubTitle     string   `json:"sub_title"`
+		HeadImg      []string `json:"head_img"`
+		OutProductID string   `json:"out_product_id"`
+		BrandID      int      `json:"brand_id"`
+		Cats         []struct {
+			CatID int `json:"cat_id"`
+			Level int `json:"level"`
+		} `json:"cats"`
+		Attrs       []interface{} `json:"attrs"`
+		Model       string        `json:"model"`
+		ProductID   int           `json:"product_id"`
+		ExpressInfo struct {
+			TemplateID int `json:"template_id"`
+		} `json:"express_info"`
+		Status int `json:"status"`
+		Skus   []struct {
+			SkuID    int           `json:"sku_id"`
+			SkuAttrs []interface{} `json:"sku_attrs"`
+		} `json:"skus"`
+		Shopcat    []interface{} `json:"shopcat"`
+		EditStatus int           `json:"edit_status"`
+		MinPrice   int           `json:"min_price"`
+		DescInfo   struct {
+			Imgs []string `json:"imgs"`
+		} `json:"desc_info,omitempty"`
+	} `json:"spus"`
 }

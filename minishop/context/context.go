@@ -42,8 +42,7 @@ func (c *Context) FetchData(urlStr string, body interface{}) (response []byte, e
 	}
 	// 返回错误信息
 	var result util.CommonError
-	err = json.Unmarshal(response, &result)
-	if err != nil {
+	if err = json.Unmarshal(response, &result); err != nil {
 		return nil, err
 	}
 	if result.ErrCode != 0 {
