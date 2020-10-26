@@ -18,7 +18,7 @@ type Service struct {
 	*context.Context
 }
 
-//NewService new order
+//NewService 初始化服务商
 func NewService(ctx *context.Context) *Service {
 	return &Service{ctx}
 }

@@ -16,7 +16,7 @@ type Store struct {
 	*context.Context
 }
 
-//NewStore new order
+// NewStore 初始化商户
 func NewStore(ctx *context.Context) *Store {
 	return &Store{ctx}
 }
