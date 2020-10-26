@@ -38,7 +38,7 @@ type Coupon struct {
 	*context.Context
 }
 
-//NewCoupon new order
+//NewCoupon 创建coupon
 func NewCoupon(ctx *context.Context) *Coupon {
 	return &Coupon{ctx}
 }

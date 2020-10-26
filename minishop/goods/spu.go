@@ -6,11 +6,13 @@ import (
 	"strconv"
 
 	"github.com/silenceper/wechat/v2/minishop/context"
+	"github.com/silenceper/wechat/v2/util"
 )
 
 const (
 	spuListURL = "https://api.weixin.qq.com/product/spu/get_list?access_token=%s"
 	spuAddURL  = "https://api.weixin.qq.com/product/spu/add?access_token=%s"
+	spuDelURL  = "https://api.weixin.qq.com/product/spu/del?access_token=%s"
 )
 
 //Spu 商品接口
@@ -30,6 +32,24 @@ func (s *Spu) AddSpu(req *SpuReq) (*SpuRsp, error) {
 		return nil, fmt.Errorf("empty params")
 	}
 	info := &SpuRsp{}
+	err = json.Unmarshal(response, info)
+	if err != nil {
+		return nil, err
+	}
+	return info, nil
+}
+
+// DeleteSpu 删除spu
+func (s *Spu) DeleteSpu(productID, outProductID int) (*util.CommonError, error) {
+	req := map[string]string{
+		"product_id":     strconv.Itoa(productID),
+		"out_product_id": strconv.Itoa(outProductID),
+	}
+	response, err := s.request(spuDelURL, req)
+	if err != nil {
+		return nil, fmt.Errorf("empty params")
+	}
+	info := &util.CommonError{}
 	err = json.Unmarshal(response, info)
 	if err != nil {
 		return nil, err
